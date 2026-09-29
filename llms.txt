@@ -1,6 +1,6 @@
 # HiveGate
 
-> Production FastAPI gateway for AI agents, built on top of [Agno](https://github.com/agno-ai/agno). MIT-licensed. Includes supervisor/worker execution, agent teams, prompt versioning, OAuth toolkits (Calendar, Email, Contacts, Drive — Google and Microsoft), per-tenant knowledge base on Qdrant, and one-click deploy to Render, Railway, and Koyeb. Image: `ghcr.io/hivegate-ai/hivegate:latest`.
+> Production FastAPI gateway for AI agents, built on top of [Agno](https://github.com/agno-agi/agno). MIT-licensed. Includes supervisor/worker execution, agent teams, prompt versioning, OAuth toolkits (Calendar, Email, Contacts, Drive — Google and Microsoft), per-tenant knowledge base on Qdrant, and one-click deploy to Render, Railway, and Koyeb. Image: `ghcr.io/hivegate-ai/hivegate:latest`.
 
 ## Site
 - [Landing page](https://hivegate.dev/): tagline, features, deploy buttons, quickstart
@@ -41,7 +41,7 @@
 - [Issue tracker](https://github.com/hivegate-ai/hivegate/issues): bug reports and feature requests
 - [License](https://github.com/hivegate-ai/hivegate/blob/main/LICENSE): MIT
 - [Deploy test plan](https://github.com/hivegate-ai/deploy/blob/main/DEPLOY_TEST_PLAN.md): per-platform smoke-test playbook
-- [Agno](https://github.com/agno-ai/agno): the underlying agent framework
+- [Agno](https://github.com/agno-agi/agno): the underlying agent framework
 
 ## Optional
 - [llms-full.txt](https://hivegate.dev/llms-full.txt): full content inlined for LLM context-window ingestion

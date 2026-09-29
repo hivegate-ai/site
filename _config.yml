@@ -9,10 +9,10 @@ description: >-
 url: "https://hivegate.dev"
 baseurl: ""
 repository: hivegate-ai/hivegate
-github_username: liberzon
+github_username: hivegate-ai
 author:
-  name: Yair Liberzon
-  url: https://github.com/liberzon
+  name: HiveGate
+  url: https://github.com/hivegate-ai
 twitter:
   card: summary_large_image
 

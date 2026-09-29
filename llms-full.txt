@@ -4,7 +4,7 @@
 
 ## What it is
 
-HiveGate is an open-source service layer on top of [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives (LLM calls, tools, sessions); the gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, and operational surface. Source: <https://github.com/hivegate-ai/hivegate> (MIT). Container image: `ghcr.io/hivegate-ai/hivegate:latest` (multi-arch).
+HiveGate is an open-source service layer on top of [Agno](https://github.com/agno-agi/agno). Agno provides the agent primitives (LLM calls, tools, sessions); the gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, and operational surface. Source: <https://github.com/hivegate-ai/hivegate> (MIT). Container image: `ghcr.io/hivegate-ai/hivegate:latest` (multi-arch).
 
 ## Features
 
@@ -102,4 +102,4 @@ Supervisor workers run as separate containers (Docker or K8s pods), pulling jobs
 - License: MIT — <https://github.com/hivegate-ai/hivegate/blob/main/LICENSE>
 - Issues: <https://github.com/hivegate-ai/hivegate/issues>
 - Agno docs: <https://docs.agno.com>
-- Maintainer: Yair Liberzon — <https://github.com/liberzon>
+- Organization: HiveGate — <https://github.com/hivegate-ai> · hello@hivegate.dev

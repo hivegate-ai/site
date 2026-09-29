@@ -29,9 +29,10 @@
     "runtimePlatform": "Python 3.11+",
     "license": "https://opensource.org/licenses/MIT",
     "author": {
-      "@type": "Person",
-      "name": "Yair Liberzon",
-      "url": "https://github.com/liberzon"
+      "@type": "Organization",
+      "name": "HiveGate",
+      "url": "https://github.com/hivegate-ai",
+      "email": "hello@hivegate.dev"
     },
     "url": "{{ site.url }}",
     "image": "{{ site.url }}/assets/og-image.png",
@@ -83,13 +84,33 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>
-        <a href="https://github.com/hivegate-ai/hivegate">Source</a> &middot;
-        <a href="https://github.com/hivegate-ai/deploy">Deploy artifacts</a> &middot;
-        <a href="/llms.txt">llms.txt</a> &middot;
-        MIT &copy; {{ site.time | date: "%Y" }} Yair Liberzon
-      </p>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand">HiveGate</a>
+        <p>Open-source production runtime for AI agents, built on Agno.</p>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <h2>Product</h2>
+        <a href="/#quickstart" data-goatcounter-click="click_quickstart" data-goatcounter-title="Footer — Quickstart">Quickstart</a>
+        <a href="/docs/" data-goatcounter-click="click_docs" data-goatcounter-title="Footer — Docs">Docs</a>
+        <a href="/deploy/" data-goatcounter-click="click_deploy" data-goatcounter-title="Footer — Deploy">Deploy</a>
+      </nav>
+      <nav class="footer-col" aria-label="Resources">
+        <h2>Resources</h2>
+        <a href="https://github.com/hivegate-ai/hivegate" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Footer — Source">Source</a>
+        <a href="https://github.com/hivegate-ai/deploy" rel="noopener">Deploy artifacts</a>
+        <a href="https://github.com/hivegate-ai/hivegate/pkgs/container/hivegate" rel="noopener">Container image</a>
+        <a href="/llms.txt">llms.txt</a>
+      </nav>
+      <nav class="footer-col" aria-label="Contact">
+        <h2>Contact</h2>
+        <a href="mailto:hello@hivegate.dev">hello@hivegate.dev</a>
+        <a href="mailto:security@hivegate.dev">security@hivegate.dev</a>
+        <a href="https://github.com/hivegate-ai/hivegate/issues" rel="noopener">Issues</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; {{ site.time | date: "%Y" }} HiveGate contributors &middot; <a href="https://github.com/hivegate-ai/hivegate/blob/main/LICENSE" rel="noopener">MIT License</a></p>
     </div>
   </footer>
 
