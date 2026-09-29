@@ -8,7 +8,7 @@ description: "Open-source FastAPI gateway for serving, orchestrating, and deploy
 # HiveGate
 
 <p class="lead">
-Open-source <strong>FastAPI gateway for AI agents</strong> — serve, orchestrate, and deploy production AI agents on top of <a href="https://github.com/agno-ai/agno">Agno</a>. MIT licensed.
+Open-source <strong>FastAPI gateway for AI agents</strong> — serve, orchestrate, and deploy production AI agents on top of <a href="https://github.com/agno-agi/agno">Agno</a>. MIT licensed.
 </p>
 
 <div class="cta-row primary">
@@ -153,7 +153,7 @@ Full per-platform playbook with smoke tests and teardown: [Deploy guide](/deploy
 Yes, with caveats. The gateway, supervisor, queue, and toolkits are covered by an integration test suite that runs against real Postgres + Qdrant on every push. Pick your own observability backend and harden the auth before shipping to end users.
 
 ### How does it relate to Agno?
-HiveGate is a service layer **on top of** [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives — LLM calls, tools, sessions. The gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, OAuth tokens, and operational surface.
+HiveGate is a service layer **on top of** [Agno](https://github.com/agno-agi/agno). Agno provides the agent primitives — LLM calls, tools, sessions. The gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, OAuth tokens, and operational surface.
 
 ### Is it a request-routing API gateway like Kong?
 No. Despite the name, HiveGate is an **agent runtime**, not an HTTP request router. It serves and orchestrates AI agents over a REST API; it doesn't proxy traffic between services.
