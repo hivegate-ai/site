@@ -1,11 +1,11 @@
 ---
-title: "Agents Gateway — open-source FastAPI gateway for AI agents"
+title: "HiveGate — open-source FastAPI gateway for AI agents"
 description: "Open-source FastAPI gateway for serving, orchestrating, and deploying AI agents. Multi-agent teams, OAuth toolkits, observability, one-click deploy. Built on Agno. MIT licensed."
 ---
 
 <section class="hero" markdown="1">
 
-# Agents Gateway
+# HiveGate
 
 <p class="lead">
 Open-source <strong>FastAPI gateway for AI agents</strong> — serve, orchestrate, and deploy production AI agents on top of <a href="https://github.com/agno-ai/agno">Agno</a>. MIT licensed.
@@ -13,15 +13,15 @@ Open-source <strong>FastAPI gateway for AI agents</strong> — serve, orchestrat
 
 <div class="cta-row primary">
   <a class="btn" href="#quickstart" data-goatcounter-click="click_quickstart" data-goatcounter-title="Hero — Quickstart">⚡ Quickstart</a>
-  <a class="btn" href="https://github.com/liberzon/agents-gateway" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Hero — Star on GitHub">⭐ Star on GitHub</a>
+  <a class="btn" href="https://github.com/hivegate-ai/hivegate" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Hero — Star on GitHub">⭐ Star on GitHub</a>
   <a class="btn secondary" href="/docs/" data-goatcounter-click="click_docs" data-goatcounter-title="Hero — Read the docs">📖 Read the docs</a>
 </div>
 
 <div class="trust-badges">
-  <a href="https://github.com/liberzon/agents-gateway/stargazers" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Trust badge — GitHub stars"><img alt="GitHub stars" src="https://img.shields.io/github/stars/liberzon/agents-gateway?style=social"></a>
-  <a href="https://github.com/liberzon/agents-gateway/blob/main/LICENSE" rel="noopener"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-yellow"></a>
+  <a href="https://github.com/hivegate-ai/hivegate/stargazers" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Trust badge — GitHub stars"><img alt="GitHub stars" src="https://img.shields.io/github/stars/hivegate-ai/hivegate?style=social"></a>
+  <a href="https://github.com/hivegate-ai/hivegate/blob/main/LICENSE" rel="noopener"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-yellow"></a>
   <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11+-blue">
-  <a href="https://github.com/liberzon/agents-gateway/pkgs/container/agents-gateway" rel="noopener"><img alt="GHCR image" src="https://img.shields.io/badge/image-ghcr.io%2Fliberzon%2Fagents--gateway-2496ED?logo=docker&logoColor=white"></a>
+  <a href="https://github.com/hivegate-ai/hivegate/pkgs/container/hivegate" rel="noopener"><img alt="GHCR image" src="https://img.shields.io/badge/image-ghcr.io%2Fhivegate--ai%2Fhivegate-2496ED?logo=docker&logoColor=white"></a>
   <img alt="Built on Agno" src="https://img.shields.io/badge/built%20on-Agno-7c9cff">
 </div>
 
@@ -31,9 +31,9 @@ Open-source <strong>FastAPI gateway for AI agents</strong> — serve, orchestrat
 
 Most production AI agents start as Python scripts that work fine in a notebook. **Shipping them to production is a different problem entirely**: API auth, per-user OAuth tokens, prompt versioning, multi-tenant isolation, job queues, approval flows, observability. Building all of that for every project doesn't scale.
 
-Agents Gateway is the runtime that handles those layers, so your agent code stays focused on the agent.
+HiveGate is the runtime that handles those layers, so your agent code stays focused on the agent.
 
-## Why Agents Gateway? {#why}
+## Why HiveGate? {#why}
 
 A focused production scaffold around the Agno agent framework.
 
@@ -67,8 +67,8 @@ A focused production scaffold around the Agno agent framework.
 ## Quickstart — deploy in 5 minutes {#quickstart}
 
 ```sh
-git clone https://github.com/liberzon/agents-gateway
-cd agents-gateway
+git clone https://github.com/hivegate-ai/hivegate
+cd hivegate
 
 # Start PostgreSQL + Qdrant (seeds demo agents automatically)
 docker compose up -d
@@ -93,13 +93,13 @@ Interactive API docs at `http://localhost:8000/docs`. Full [quickstart guide](/d
 ### Or deploy to the cloud with one click
 
 <div class="deploy-buttons">
-  <a href="https://railway.app/template?template=https://github.com/liberzon/agents-gateway-deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy on Railway">
+  <a href="https://railway.app/template?template=https://github.com/hivegate-ai/deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy on Railway">
     <img alt="Deploy on Railway" src="https://railway.app/button.svg">
   </a>
-  <a href="https://render.com/deploy?repo=https://github.com/liberzon/agents-gateway-deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy to Render">
+  <a href="https://render.com/deploy?repo=https://github.com/hivegate-ai/deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy to Render">
     <img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg">
   </a>
-  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/liberzon/agents-gateway-deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy to Koyeb">
+  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/hivegate-ai/deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy to Koyeb">
     <img alt="Deploy to Koyeb" src="https://img.shields.io/badge/Deploy%20to-Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white">
   </a>
 </div>
@@ -129,23 +129,23 @@ Interactive API docs at `http://localhost:8000/docs`. Full [quickstart guide](/d
 
 | Path | Best for | Config |
 |---|---|---|
-| **Render** | Easiest first deploy | [`render.yaml`](https://github.com/liberzon/agents-gateway-deploy/blob/main/render.yaml) (image-based) |
-| **Railway** | Best Postgres UX | [`railway.toml`](https://github.com/liberzon/agents-gateway-deploy/blob/main/railway.toml) |
-| **Koyeb** | Free nano tier | [`koyeb.yaml`](https://github.com/liberzon/agents-gateway-deploy/blob/main/koyeb.yaml) |
-| **Kubernetes** | Self-hosting / scale | [Kustomize manifests](https://github.com/liberzon/agents-gateway-deploy/tree/main/k8s) |
-| **AWS / Azure / GCP** | Cloud-native | [`deploy/`](https://github.com/liberzon/agents-gateway/tree/main/deploy) (ECS, Container Apps, Cloud Run) |
+| **Render** | Easiest first deploy | [`render.yaml`](https://github.com/hivegate-ai/deploy/blob/main/render.yaml) (image-based) |
+| **Railway** | Best Postgres UX | [`railway.toml`](https://github.com/hivegate-ai/deploy/blob/main/railway.toml) |
+| **Koyeb** | Free nano tier | [`koyeb.yaml`](https://github.com/hivegate-ai/deploy/blob/main/koyeb.yaml) |
+| **Kubernetes** | Self-hosting / scale | [Kustomize manifests](https://github.com/hivegate-ai/deploy/tree/main/k8s) |
+| **AWS / Azure / GCP** | Cloud-native | [`deploy/`](https://github.com/hivegate-ai/hivegate/tree/main/deploy) (ECS, Container Apps, Cloud Run) |
 
 Full per-platform playbook with smoke tests and teardown: [Deploy guide](/deploy/) →
 
 ## Get started {#cta}
 
 <div class="cta-row final">
-  <a class="btn" href="https://github.com/liberzon/agents-gateway" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Footer CTA — Star on GitHub">⭐ Star on GitHub</a>
+  <a class="btn" href="https://github.com/hivegate-ai/hivegate" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Footer CTA — Star on GitHub">⭐ Star on GitHub</a>
   <a class="btn" href="/docs/" data-goatcounter-click="click_docs" data-goatcounter-title="Footer CTA — Read the docs">📖 Read the docs</a>
   <a class="btn" href="/deploy/" data-goatcounter-click="click_deploy" data-goatcounter-title="Footer CTA — Deploy guide">🚀 Deploy in 5 min</a>
 </div>
 
-<p class="cta-note">MIT licensed. Contributions welcome — see <a href="https://github.com/liberzon/agents-gateway/issues" rel="noopener">issues</a> on GitHub.</p>
+<p class="cta-note">MIT licensed. Contributions welcome — see <a href="https://github.com/hivegate-ai/hivegate/issues" rel="noopener">issues</a> on GitHub.</p>
 
 ## FAQ
 
@@ -153,10 +153,10 @@ Full per-platform playbook with smoke tests and teardown: [Deploy guide](/deploy
 Yes, with caveats. The gateway, supervisor, queue, and toolkits are covered by an integration test suite that runs against real Postgres + Qdrant on every push. Pick your own observability backend and harden the auth before shipping to end users.
 
 ### How does it relate to Agno?
-Agents Gateway is a service layer **on top of** [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives — LLM calls, tools, sessions. The gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, OAuth tokens, and operational surface.
+HiveGate is a service layer **on top of** [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives — LLM calls, tools, sessions. The gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, OAuth tokens, and operational surface.
 
 ### Is it a request-routing API gateway like Kong?
-No. Despite the name, Agents Gateway is an **agent runtime**, not an HTTP request router. It serves and orchestrates AI agents over a REST API; it doesn't proxy traffic between services.
+No. Despite the name, HiveGate is an **agent runtime**, not an HTTP request router. It serves and orchestrates AI agents over a REST API; it doesn't proxy traffic between services.
 
 ### What models does it support?
 Anything Agno supports — OpenAI, Anthropic (Claude), Gemini, plus other providers via Agno. Configure per agent via the `model` field.

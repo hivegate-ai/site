@@ -64,4 +64,4 @@ Allow: /
 User-agent: Diffbot
 Allow: /
 
-Sitemap: https://agentsgateway.dev/sitemap.xml
+Sitemap: https://hivegate.dev/sitemap.xml

@@ -1,23 +1,23 @@
 ---
-title: "Deploy — Agents Gateway"
+title: "Deploy — HiveGate"
 description: "One-click deploy to Render, Railway, or Koyeb. Kubernetes via Kustomize. Cloud manifests for AWS, Azure, GCP."
 permalink: /deploy/
 ---
 
 # Deploy
 
-All deploy paths are driven from [`liberzon/agents-gateway-deploy`](https://github.com/liberzon/agents-gateway-deploy) and pull the prebuilt multi-arch image **`ghcr.io/liberzon/agents-gateway:latest`** (linux/amd64 + linux/arm64).
+All deploy paths are driven from [`hivegate-ai/deploy`](https://github.com/hivegate-ai/deploy) and pull the prebuilt multi-arch image **`ghcr.io/hivegate-ai/hivegate:latest`** (linux/amd64 + linux/arm64).
 
 ## One-click platform deploys {#one-click}
 
 <div class="deploy-buttons">
-  <a href="https://railway.app/template?template=https://github.com/liberzon/agents-gateway-deploy" rel="noopener">
+  <a href="https://railway.app/template?template=https://github.com/hivegate-ai/deploy" rel="noopener">
     <img alt="Deploy on Railway" src="https://railway.app/button.svg">
   </a>
-  <a href="https://render.com/deploy?repo=https://github.com/liberzon/agents-gateway-deploy" rel="noopener">
+  <a href="https://render.com/deploy?repo=https://github.com/hivegate-ai/deploy" rel="noopener">
     <img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg">
   </a>
-  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/liberzon/agents-gateway-deploy" rel="noopener">
+  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/hivegate-ai/deploy" rel="noopener">
     <img alt="Deploy to Koyeb" src="https://img.shields.io/badge/Deploy%20to-Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white">
   </a>
 </div>
@@ -30,7 +30,7 @@ All deploy paths are driven from [`liberzon/agents-gateway-deploy`](https://gith
 
 All three default to `PROMPT_STORAGE_BACKEND=postgres` and prompt you for DB credentials and at least one LLM API key at deploy time.
 
-Full step-by-step (provisioning Postgres, env vars, smoke test, teardown): [`DEPLOY_TEST_PLAN.md`](https://github.com/liberzon/agents-gateway-deploy/blob/main/DEPLOY_TEST_PLAN.md).
+Full step-by-step (provisioning Postgres, env vars, smoke test, teardown): [`DEPLOY_TEST_PLAN.md`](https://github.com/hivegate-ai/deploy/blob/main/DEPLOY_TEST_PLAN.md).
 
 ## Kubernetes {#k8s}
 
@@ -38,23 +38,23 @@ Kustomize-based, with base manifests under `k8s/base/` and per-project overlays.
 
 ```bash
 gh workflow run deploy-k8s.yml \
-  -f project=agents-gateway \
+  -f project=hivegate \
   -f environment=production \
   -f image_tag=latest
 ```
 
-Requires a `KUBECONFIG_AGENTS_GATEWAY` secret (base64-encoded kubeconfig). For GKE workload-identity auth, see [`config/projects.yaml`](https://github.com/liberzon/agents-gateway-deploy/blob/main/config/projects.yaml).
+Requires a `KUBECONFIG_HIVEGATE` secret (base64-encoded kubeconfig). For GKE workload-identity auth, see [`config/projects.yaml`](https://github.com/hivegate-ai/deploy/blob/main/config/projects.yaml).
 
 ## Cloud-specific manifests {#cloud}
 
-Maintained alongside the app in [`liberzon/agents-gateway/deploy/`](https://github.com/liberzon/agents-gateway/tree/main/deploy):
+Maintained alongside the app in [`hivegate-ai/hivegate/deploy/`](https://github.com/hivegate-ai/hivegate/tree/main/deploy):
 
 | Target | Path |
 |---|---|
-| AWS (ECS + CloudFormation) | [`deploy/aws/`](https://github.com/liberzon/agents-gateway/tree/main/deploy/aws) |
-| Azure (Container Apps + Bicep) | [`deploy/azure/`](https://github.com/liberzon/agents-gateway/tree/main/deploy/azure) |
-| Google Cloud Run | [`deploy/gcp/`](https://github.com/liberzon/agents-gateway/tree/main/deploy/gcp) |
-| Generic (docker-compose, plain K8s) | [`deploy/generic/`](https://github.com/liberzon/agents-gateway/tree/main/deploy/generic) |
+| AWS (ECS + CloudFormation) | [`deploy/aws/`](https://github.com/hivegate-ai/hivegate/tree/main/deploy/aws) |
+| Azure (Container Apps + Bicep) | [`deploy/azure/`](https://github.com/hivegate-ai/hivegate/tree/main/deploy/azure) |
+| Google Cloud Run | [`deploy/gcp/`](https://github.com/hivegate-ai/hivegate/tree/main/deploy/gcp) |
+| Generic (docker-compose, plain K8s) | [`deploy/generic/`](https://github.com/hivegate-ai/hivegate/tree/main/deploy/generic) |
 
 ## Smoke test {#smoke}
 
@@ -83,7 +83,7 @@ curl -fsS -X POST "$URL/v2/agents/smoke/chat" \
 curl -fsS -X DELETE "$URL/v2/agents/smoke"
 ```
 
-Expected: each step returns `2xx`, step 4 echoes the Gemini reply (`"pong"`). Anything else → save logs and [open an issue](https://github.com/liberzon/agents-gateway/issues).
+Expected: each step returns `2xx`, step 4 echoes the Gemini reply (`"pong"`). Anything else → save logs and [open an issue](https://github.com/hivegate-ai/hivegate/issues).
 
 ## Operational notes {#ops}
 

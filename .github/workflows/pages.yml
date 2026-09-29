@@ -26,10 +26,10 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
 
-      - name: Pull detailed API docs from agents-gateway-docs
+      - name: Pull detailed API docs from hivegate-ai/docs
         run: |
           set -euo pipefail
-          git clone --depth 1 https://github.com/liberzon/agents-gateway-docs.git _api-docs-src
+          git clone --depth 1 https://github.com/hivegate-ai/docs.git _api-docs-src
           mkdir -p _docs
           # Skip Sphinx-only files (conf.py, Makefile, _build/, API_DOCUMENTATION.md is huge — include separately)
           for f in _api-docs-src/*.md; do
@@ -48,7 +48,7 @@ jobs:
             {
               echo "---"
               echo "layout: default"
-              echo "title: \"$title — Agents Gateway docs\""
+              echo "title: \"$title — HiveGate docs\""
               echo "permalink: /docs/$slug/"
               echo "---"
               echo ""

@@ -1,10 +1,10 @@
-# Agents Gateway
+# HiveGate
 
 > Production FastAPI gateway for AI agents, built on top of Agno. MIT-licensed. Deploy in one click; scale to your own Kubernetes when you outgrow it.
 
 ## What it is
 
-Agents Gateway is an open-source service layer on top of [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives (LLM calls, tools, sessions); the gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, and operational surface. Source: <https://github.com/liberzon/agents-gateway> (MIT). Container image: `ghcr.io/liberzon/agents-gateway:latest` (multi-arch).
+HiveGate is an open-source service layer on top of [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives (LLM calls, tools, sessions); the gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, and operational surface. Source: <https://github.com/hivegate-ai/hivegate> (MIT). Container image: `ghcr.io/hivegate-ai/hivegate:latest` (multi-arch).
 
 ## Features
 
@@ -20,8 +20,8 @@ Agents Gateway is an open-source service layer on top of [Agno](https://github.c
 ## Quickstart
 
 ```sh
-git clone https://github.com/liberzon/agents-gateway
-cd agents-gateway
+git clone https://github.com/hivegate-ai/hivegate
+cd hivegate
 
 # Start PostgreSQL + Qdrant (seeds demo agents automatically)
 docker compose up -d
@@ -65,17 +65,17 @@ All endpoints under `/v2/*`, authed via `X-API-Key`. Admin endpoints under `/adm
 
 ## Deploy
 
-Three one-click providers, all backed by the prebuilt image `ghcr.io/liberzon/agents-gateway:latest`:
+Three one-click providers, all backed by the prebuilt image `ghcr.io/hivegate-ai/hivegate:latest`:
 
 - **Render** — `render.yaml` (image-based). Web Service plan: starter (~$7/mo prorated). Free Postgres.
 - **Railway** — `railway.toml` + wrapper `Dockerfile`. $5/mo trial credit. Reference variables for Postgres auto-fill.
 - **Koyeb** — `koyeb.yaml` (image-based). Nano instance free tier. Requires Koyeb secrets pre-created.
 
-Kubernetes via Kustomize: `gh workflow run deploy-k8s.yml -f project=agents-gateway -f environment=production -f image_tag=latest`. Requires `KUBECONFIG_AGENTS_GATEWAY` secret.
+Kubernetes via Kustomize: `gh workflow run deploy-k8s.yml -f project=hivegate -f environment=production -f image_tag=latest`. Requires `KUBECONFIG_HIVEGATE` secret.
 
-Cloud-specific manifests live in [`agents-gateway/deploy/`](https://github.com/liberzon/agents-gateway/tree/main/deploy): AWS, Azure, GCP, generic Compose & K8s.
+Cloud-specific manifests live in [`hivegate/deploy/`](https://github.com/hivegate-ai/hivegate/tree/main/deploy): AWS, Azure, GCP, generic Compose & K8s.
 
-Full per-platform smoke-test playbook: <https://github.com/liberzon/agents-gateway-deploy/blob/main/DEPLOY_TEST_PLAN.md>.
+Full per-platform smoke-test playbook: <https://github.com/hivegate-ai/deploy/blob/main/DEPLOY_TEST_PLAN.md>.
 
 ## Architecture
 
@@ -99,7 +99,7 @@ Supervisor workers run as separate containers (Docker or K8s pods), pulling jobs
 
 ## License & support
 
-- License: MIT — <https://github.com/liberzon/agents-gateway/blob/main/LICENSE>
-- Issues: <https://github.com/liberzon/agents-gateway/issues>
+- License: MIT — <https://github.com/hivegate-ai/hivegate/blob/main/LICENSE>
+- Issues: <https://github.com/hivegate-ai/hivegate/issues>
 - Agno docs: <https://docs.agno.com>
 - Maintainer: Yair Liberzon — <https://github.com/liberzon>

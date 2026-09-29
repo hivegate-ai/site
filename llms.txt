@@ -1,47 +1,47 @@
-# Agents Gateway
+# HiveGate
 
-> Production FastAPI gateway for AI agents, built on top of [Agno](https://github.com/agno-ai/agno). MIT-licensed. Includes supervisor/worker execution, agent teams, prompt versioning, OAuth toolkits (Calendar, Email, Contacts, Drive — Google and Microsoft), per-tenant knowledge base on Qdrant, and one-click deploy to Render, Railway, and Koyeb. Image: `ghcr.io/liberzon/agents-gateway:latest`.
+> Production FastAPI gateway for AI agents, built on top of [Agno](https://github.com/agno-ai/agno). MIT-licensed. Includes supervisor/worker execution, agent teams, prompt versioning, OAuth toolkits (Calendar, Email, Contacts, Drive — Google and Microsoft), per-tenant knowledge base on Qdrant, and one-click deploy to Render, Railway, and Koyeb. Image: `ghcr.io/hivegate-ai/hivegate:latest`.
 
 ## Site
-- [Landing page](https://agentsgateway.dev/): tagline, features, deploy buttons, quickstart
-- [Docs](https://agentsgateway.dev/docs/): architecture diagram, API reference, configuration, toolkits, supervisor platform, database schema, observability
-- [Deploy guide](https://agentsgateway.dev/deploy/): one-click platforms, Kubernetes, cloud-specific manifests, smoke test, operational notes
+- [Landing page](https://hivegate.dev/): tagline, features, deploy buttons, quickstart
+- [Docs](https://hivegate.dev/docs/): architecture diagram, API reference, configuration, toolkits, supervisor platform, database schema, observability
+- [Deploy guide](https://hivegate.dev/deploy/): one-click platforms, Kubernetes, cloud-specific manifests, smoke test, operational notes
 
-## Detailed reference (auto-synced from agents-gateway-docs)
-- [Overview](https://agentsgateway.dev/docs/overview/): architecture and key concepts
-- [Quickstart](https://agentsgateway.dev/docs/quickstart/): setup and first API call
-- [Authentication](https://agentsgateway.dev/docs/authentication/): API keys, admin auth, dev mode
-- [Configuration](https://agentsgateway.dev/docs/configuration/): environment variables
-- [API: Agents](https://agentsgateway.dev/docs/api-agents/): agent CRUD and chat endpoints
-- [API: Teams](https://agentsgateway.dev/docs/api-teams/): team coordinate + supervisor modes
-- [API: Prompts](https://agentsgateway.dev/docs/api-prompts/): versioned prompt templates
-- [API: Knowledge](https://agentsgateway.dev/docs/api-knowledge/): tenant + collection-level knowledge
-- [API: Tokens](https://agentsgateway.dev/docs/api-tokens/): OAuth token storage with auto-refresh
-- [API: Skills](https://agentsgateway.dev/docs/api-skills/): reusable skill definitions
-- [API: Engines](https://agentsgateway.dev/docs/api-engines/): supervisor execution engine registry
-- [API: Targets](https://agentsgateway.dev/docs/api-targets/): supervisor run target registry
-- [API: Approvals](https://agentsgateway.dev/docs/api-approvals/): HITL approval flow
-- [API: Admin](https://agentsgateway.dev/docs/api-admin/): cache, API keys, background tasks
-- [Supervisor platform](https://agentsgateway.dev/docs/supervisor-platform/): architecture, classification, worker types
-- [Agent packs](https://agentsgateway.dev/docs/agent-packs/): YAML pack format, CLI
-- [Remote agent](https://agentsgateway.dev/docs/remote-agent/): Docker/K8s container execution
-- [Toolkits](https://agentsgateway.dev/docs/toolkits/): Calendar, Email, Drive, ClaudeCode, ManagedAgents
-- [Models reference](https://agentsgateway.dev/docs/models-reference/): Pydantic request/response models
-- [Database schema](https://agentsgateway.dev/docs/database-schema/): all tables
-- [LLM models](https://agentsgateway.dev/docs/llm-models/): supported OpenAI, Gemini, Claude variants
-- [Deployment](https://agentsgateway.dev/docs/deployment/): docker-compose, production setup
-- [Development](https://agentsgateway.dev/docs/development/): dev setup, validation, testing
+## Detailed reference (auto-synced from hivegate-ai/docs)
+- [Overview](https://hivegate.dev/docs/overview/): architecture and key concepts
+- [Quickstart](https://hivegate.dev/docs/quickstart/): setup and first API call
+- [Authentication](https://hivegate.dev/docs/authentication/): API keys, admin auth, dev mode
+- [Configuration](https://hivegate.dev/docs/configuration/): environment variables
+- [API: Agents](https://hivegate.dev/docs/api-agents/): agent CRUD and chat endpoints
+- [API: Teams](https://hivegate.dev/docs/api-teams/): team coordinate + supervisor modes
+- [API: Prompts](https://hivegate.dev/docs/api-prompts/): versioned prompt templates
+- [API: Knowledge](https://hivegate.dev/docs/api-knowledge/): tenant + collection-level knowledge
+- [API: Tokens](https://hivegate.dev/docs/api-tokens/): OAuth token storage with auto-refresh
+- [API: Skills](https://hivegate.dev/docs/api-skills/): reusable skill definitions
+- [API: Engines](https://hivegate.dev/docs/api-engines/): supervisor execution engine registry
+- [API: Targets](https://hivegate.dev/docs/api-targets/): supervisor run target registry
+- [API: Approvals](https://hivegate.dev/docs/api-approvals/): HITL approval flow
+- [API: Admin](https://hivegate.dev/docs/api-admin/): cache, API keys, background tasks
+- [Supervisor platform](https://hivegate.dev/docs/supervisor-platform/): architecture, classification, worker types
+- [Agent packs](https://hivegate.dev/docs/agent-packs/): YAML pack format, CLI
+- [Remote agent](https://hivegate.dev/docs/remote-agent/): Docker/K8s container execution
+- [Toolkits](https://hivegate.dev/docs/toolkits/): Calendar, Email, Drive, ClaudeCode, ManagedAgents
+- [Models reference](https://hivegate.dev/docs/models-reference/): Pydantic request/response models
+- [Database schema](https://hivegate.dev/docs/database-schema/): all tables
+- [LLM models](https://hivegate.dev/docs/llm-models/): supported OpenAI, Gemini, Claude variants
+- [Deployment](https://hivegate.dev/docs/deployment/): docker-compose, production setup
+- [Development](https://hivegate.dev/docs/development/): dev setup, validation, testing
 
 ## Source
-- [Repository (app)](https://github.com/liberzon/agents-gateway): FastAPI + Agno service, Python 3.11+, MIT
-- [Repository (deploy)](https://github.com/liberzon/agents-gateway-deploy): one-click platform configs, K8s manifests, build pipeline
-- [Container image](https://github.com/liberzon/agents-gateway/pkgs/container/agents-gateway): multi-arch (linux/amd64, linux/arm64) at `ghcr.io/liberzon/agents-gateway`
+- [Repository (app)](https://github.com/hivegate-ai/hivegate): FastAPI + Agno service, Python 3.11+, MIT
+- [Repository (deploy)](https://github.com/hivegate-ai/deploy): one-click platform configs, K8s manifests, build pipeline
+- [Container image](https://github.com/hivegate-ai/hivegate/pkgs/container/hivegate): multi-arch (linux/amd64, linux/arm64) at `ghcr.io/hivegate-ai/hivegate`
 
 ## Reference
-- [Issue tracker](https://github.com/liberzon/agents-gateway/issues): bug reports and feature requests
-- [License](https://github.com/liberzon/agents-gateway/blob/main/LICENSE): MIT
-- [Deploy test plan](https://github.com/liberzon/agents-gateway-deploy/blob/main/DEPLOY_TEST_PLAN.md): per-platform smoke-test playbook
+- [Issue tracker](https://github.com/hivegate-ai/hivegate/issues): bug reports and feature requests
+- [License](https://github.com/hivegate-ai/hivegate/blob/main/LICENSE): MIT
+- [Deploy test plan](https://github.com/hivegate-ai/deploy/blob/main/DEPLOY_TEST_PLAN.md): per-platform smoke-test playbook
 - [Agno](https://github.com/agno-ai/agno): the underlying agent framework
 
 ## Optional
-- [llms-full.txt](https://agentsgateway.dev/llms-full.txt): full content inlined for LLM context-window ingestion
+- [llms-full.txt](https://hivegate.dev/llms-full.txt): full content inlined for LLM context-window ingestion
