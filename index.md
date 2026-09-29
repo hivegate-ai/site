@@ -1,168 +1,202 @@
 ---
-title: "HiveGate — open-source FastAPI gateway for AI agents"
-description: "Open-source FastAPI gateway for serving, orchestrating, and deploying AI agents. Multi-agent teams, OAuth toolkits, observability, one-click deploy. Built on Agno. MIT licensed."
+title: "HiveGate — run your Agno agents as a production API"
+description: "HiveGate is an open-source FastAPI service for AI agents: per-user sessions, OAuth tokens, approvals, multi-agent teams and tracing, with one-click deploys. Built on Agno. MIT licensed."
+home: true
 ---
 
-<section class="hero" markdown="1">
-
-# HiveGate
-
-<p class="lead">
-Open-source <strong>FastAPI gateway for AI agents</strong> — serve, orchestrate, and deploy production AI agents on top of <a href="https://github.com/agno-agi/agno">Agno</a>. MIT licensed.
-</p>
-
-<div class="cta-row primary">
-  <a class="btn" href="#quickstart" data-goatcounter-click="click_quickstart" data-goatcounter-title="Hero — Quickstart">⚡ Quickstart</a>
-  <a class="btn" href="https://github.com/hivegate-ai/hivegate" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Hero — Star on GitHub">⭐ Star on GitHub</a>
-  <a class="btn secondary" href="/docs/" data-goatcounter-click="click_docs" data-goatcounter-title="Hero — Read the docs">📖 Read the docs</a>
-</div>
-
-<div class="trust-badges">
-  <a href="https://github.com/hivegate-ai/hivegate/stargazers" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Trust badge — GitHub stars"><img alt="GitHub stars" src="https://img.shields.io/github/stars/hivegate-ai/hivegate?style=social"></a>
-  <a href="https://github.com/hivegate-ai/hivegate/blob/main/LICENSE" rel="noopener"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-yellow"></a>
-  <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11+-blue">
-  <a href="https://github.com/hivegate-ai/hivegate/pkgs/container/hivegate" rel="noopener"><img alt="GHCR image" src="https://img.shields.io/badge/image-ghcr.io%2Fhivegate--ai%2Fhivegate-2496ED?logo=docker&logoColor=white"></a>
-  <img alt="Built on Agno" src="https://img.shields.io/badge/built%20on-Agno-7c9cff">
-</div>
-
+<section class="hero">
+  <div class="hero-copy">
+    <h1>Run your Agno agents as a production API.</h1>
+    <p class="hero-lead">HiveGate is an open-source FastAPI service that gives your agents what production needs: per-user sessions, OAuth tokens, approvals, multi-agent teams and tracing. You write the agent. HiveGate serves it.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/deploy/" data-goatcounter-click="click_deploy" data-goatcounter-title="Hero — Deploy">Deploy in one click</a>
+      <a class="btn btn-quiet" href="#quickstart" data-goatcounter-click="click_quickstart" data-goatcounter-title="Hero — Quickstart">Run it locally</a>
+    </div>
+    <p class="hero-meta">Free and open source under the MIT license. Python 3.11+, built on <a href="https://github.com/agno-agi/agno" rel="noopener">Agno</a>.</p>
+  </div>
+  <div class="hero-visual">
+    {% include hive.svg %}
+  </div>
 </section>
 
-## The problem
-
-Most production AI agents start as Python scripts that work fine in a notebook. **Shipping them to production is a different problem entirely**: API auth, per-user OAuth tokens, prompt versioning, multi-tenant isolation, job queues, approval flows, observability. Building all of that for every project doesn't scale.
-
-HiveGate is the runtime that handles those layers, so your agent code stays focused on the agent.
-
-## Why HiveGate? {#why}
-
-A focused production scaffold around the Agno agent framework.
-
-<div class="features">
-  <div class="feature">
-    <h3>REST API for agents</h3>
-    <p>Create, configure, version, and chat with agents over HTTP. Per-user sessions, streaming or non-streaming, multi-tenant by design.</p>
+<section class="band" aria-labelledby="api-heading">
+  <div class="band-head">
+    <h2 id="api-heading">Everything is an HTTP call</h2>
+    <p>Your app talks to agents, teams, approvals and tokens through one REST API, with plain JSON or streamed responses.</p>
   </div>
-  <div class="feature">
-    <h3>Multi-agent teams</h3>
-    <p>Compose agents into teams with <strong>coordinate</strong> or <strong>supervisor</strong> execution modes. Job queues, approval flows, containerized workers.</p>
-  </div>
-  <div class="feature">
-    <h3>OAuth toolkits</h3>
-    <p>Plug Gmail, Calendar, Contacts, and Drive (Google + Microsoft) into any agent with confirmation workflows and auto-refresh.</p>
-  </div>
-  <div class="feature">
-    <h3>Production-ready ops</h3>
-    <p>OpenTelemetry tracing, Sentry, OTLP, Logtail. Versioned prompts. Per-tenant knowledge base on Qdrant.</p>
-  </div>
-  <div class="feature">
-    <h3>One-click deploy</h3>
-    <p>Render, Railway, Koyeb buttons backed by a prebuilt multi-arch image on GHCR. K8s manifests + AWS/Azure/GCP recipes included.</p>
-  </div>
-  <div class="feature">
-    <h3>Open by default</h3>
-    <p>MIT licensed. No vendor lock-in. Bring your own model provider (OpenAI, Anthropic, Gemini, …) and your own database.</p>
-  </div>
-</div>
+  {% include api-examples.html %}
+</section>
 
-## Quickstart — deploy in 5 minutes {#quickstart}
+<section class="band" aria-labelledby="included-heading">
+  <div class="band-head">
+    <h2 id="included-heading">What you'd otherwise build yourself</h2>
+    <p>Running an agent in a notebook is easy. Serving it to many users means building all of this around it. HiveGate ships it.</p>
+  </div>
+  <div class="included">
+    <div class="included-group">
+      <h3>Serving</h3>
+      <dl>
+        <dt><a href="/docs/api-agents/">Agents over HTTP</a></dt>
+        <dd>Create, version and chat with agents through a REST API, with JSON or streamed replies.</dd>
+        <dt><a href="/docs/overview/">Per-user sessions</a></dt>
+        <dd>Conversation history is kept per user and per session, and separated by tenant.</dd>
+        <dt><a href="/docs/api-teams/">Teams of agents</a></dt>
+        <dd>Group agents into a team that coordinates, or one where a supervisor hands out the work.</dd>
+      </dl>
+    </div>
+    <div class="included-group">
+      <h3>Identity and integrations</h3>
+      <dl>
+        <dt><a href="/docs/authentication/">API keys</a></dt>
+        <dd>Per-client API keys, plus a separate admin secret for management endpoints.</dd>
+        <dt><a href="/docs/api-tokens/">OAuth token store</a></dt>
+        <dd>Each user's Google and Microsoft tokens are stored and refreshed for you.</dd>
+        <dt><a href="/docs/toolkits/">Workspace toolkits</a></dt>
+        <dd>Ready-made Gmail, Calendar, Contacts and Drive tools for Google and Microsoft accounts.</dd>
+      </dl>
+    </div>
+    <div class="included-group">
+      <h3>Knowledge</h3>
+      <dl>
+        <dt><a href="/docs/api-knowledge/">Knowledge base</a></dt>
+        <dd>Per-tenant documents your agents can search, stored in Qdrant.</dd>
+        <dt><a href="/docs/api-prompts/">Versioned prompts</a></dt>
+        <dd>Edit an agent's prompt through the API without redeploying. Every change gets a new version number.</dd>
+        <dt><a href="/docs/api-skills/">Skills</a></dt>
+        <dd>Reusable step-by-step instructions, reference material and scripts that agents can follow.</dd>
+      </dl>
+    </div>
+    <div class="included-group">
+      <h3>Operations</h3>
+      <dl>
+        <dt><a href="/docs/api-approvals/">Approvals</a></dt>
+        <dd>Risky tool calls pause until a person approves or denies them.</dd>
+        <dt><a href="/docs/configuration/">Tracing and errors</a></dt>
+        <dd>OpenTelemetry, Sentry and Logtail, switched on with environment variables.</dd>
+        <dt><a href="/deploy/">Deploy anywhere</a></dt>
+        <dd>A prebuilt image for Render, Railway, Koyeb, Kubernetes, AWS, Azure and Google Cloud.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
 
-```sh
-git clone https://github.com/hivegate-ai/hivegate
+<section class="band band-split" aria-labelledby="run-heading">
+  <div class="band-head">
+    <h2 id="run-heading">How a team run works</h2>
+    <p>The hive at the top of this page, step by step.</p>
+  </div>
+  <ol class="steps">
+    <li>
+      <h3>A request comes in</h3>
+      <p>Your app sends a message to a team, along with who the user is and which tenant they belong to.</p>
+    </li>
+    <li>
+      <h3>The supervisor splits the work</h3>
+      <p>A supervisor agent decides which agents in the team should handle each part of the request.</p>
+    </li>
+    <li>
+      <h3>Workers act for the user</h3>
+      <p>Each agent calls its tools, such as Gmail, Calendar or the knowledge base, using that user's own tokens.</p>
+    </li>
+    <li>
+      <h3>Risky actions wait for a person</h3>
+      <p>Anything marked as needing approval pauses the run until someone approves or denies it.</p>
+    </li>
+    <li>
+      <h3>One answer comes back</h3>
+      <p>The team replies as JSON or a stream. Every step is traced, so you can see what happened afterwards.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="band" id="quickstart" aria-labelledby="quickstart-heading">
+  <div class="band-head">
+    <h2 id="quickstart-heading">Run it locally in five minutes</h2>
+    <p>You need Docker, Python 3.11+ and an API key for a model provider. The demo agent uses Gemini.</p>
+  </div>
+  <div class="quickstart">
+    <ol class="steps steps-code">
+      <li>
+        <h3>Clone it and start the databases</h3>
+<pre><code>git clone https://github.com/hivegate-ai/hivegate
 cd hivegate
+docker compose up -d</code></pre>
+        <p>This starts Postgres and Qdrant and loads some demo agents.</p>
+      </li>
+      <li>
+        <h3>Start the API</h3>
+<pre><code>./scripts/dev_setup.sh
+source .venv/bin/activate
+./scripts/start_server.sh</code></pre>
+      </li>
+      <li>
+        <h3>Chat with the demo agent</h3>
+<pre><code>export GOOGLE_API_KEY="your-gemini-key"
 
-# Start PostgreSQL + Qdrant (seeds demo agents automatically)
-docker compose up -d
-
-# Set up Python environment + start the API
-./scripts/dev_setup.sh && source .venv/bin/activate
-./scripts/start_server.sh
-```
-
-Then chat with the demo agent:
-
-```sh
-export GOOGLE_API_KEY="your-gemini-key"
-
-curl -X POST http://localhost:8000/v2/agents/demo-assistant/chat \
+curl -X POST \
+  http://localhost:8000/v2/agents/demo-assistant/chat \
   -H 'Content-Type: application/json' \
-  -d '{"message":"Hi","user_id":"u1","session_id":"s1","stream":false}'
-```
-
-Interactive API docs at `http://localhost:8000/docs`. Full [quickstart guide](/docs/#quickstart) and [API reference](/docs/#api) →
-
-### Or deploy to the cloud with one click
-
-<div class="deploy-buttons">
-  <a href="https://railway.app/template?template=https://github.com/hivegate-ai/deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy on Railway">
-    <img alt="Deploy on Railway" src="https://railway.app/button.svg">
-  </a>
-  <a href="https://render.com/deploy?repo=https://github.com/hivegate-ai/deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy to Render">
-    <img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg">
-  </a>
-  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/hivegate-ai/deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy to Koyeb">
-    <img alt="Deploy to Koyeb" src="https://img.shields.io/badge/Deploy%20to-Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white">
-  </a>
-</div>
-
-## Who is this for? {#who}
-
-<div class="audience">
-  <div class="persona">
-    <h3>AI engineers</h3>
-    <p>Building production agent systems and tired of stitching FastAPI + Postgres + Qdrant + OAuth boilerplate for every project.</p>
+  -d '{"message": "Hi", "user_id": "u1",
+       "session_id": "s1", "stream": false}'</code></pre>
+        <p>Interactive API docs are at <code>http://localhost:8000/docs</code>.</p>
+      </li>
+    </ol>
+    <aside class="quickstart-aside" aria-labelledby="oneclick-heading">
+      <h3 id="oneclick-heading">Rather skip the setup?</h3>
+      <p>Deploy the prebuilt image to a managed platform. You'll be asked for a database and your model API key.</p>
+      {% include deploy-buttons.html %}
+      <p class="small"><a href="/deploy/">Deploy guide</a>, with Kubernetes and cloud setups.</p>
+    </aside>
   </div>
-  <div class="persona">
-    <h3>Startups</h3>
-    <p>Shipping agent APIs and want a permissive, MIT-licensed runtime they own — not a managed service with usage-based pricing.</p>
+</section>
+
+<section class="band" id="deploy" aria-labelledby="deploy-heading">
+  <div class="band-head">
+    <h2 id="deploy-heading">Where it runs</h2>
+    <p>Every option uses the same image, <code>ghcr.io/hivegate-ai/hivegate</code>, built for both x86 and ARM.</p>
   </div>
-  <div class="persona">
-    <h3>Platform teams</h3>
-    <p>Standing up an internal agent platform with multi-tenant isolation, approvals, and observability across many agent use cases.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Platform</th><th scope="col">Good for</th><th scope="col">Config</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Render</th><td>The easiest first deploy</td><td><a href="https://github.com/hivegate-ai/deploy/blob/main/render.yaml"><code>render.yaml</code></a></td></tr>
+        <tr><th scope="row">Railway</th><td>The smoothest Postgres setup</td><td><a href="https://github.com/hivegate-ai/deploy/blob/main/railway.toml"><code>railway.toml</code></a></td></tr>
+        <tr><th scope="row">Koyeb</th><td>Trying it on a free tier</td><td><a href="https://github.com/hivegate-ai/deploy/blob/main/koyeb.yaml"><code>koyeb.yaml</code></a></td></tr>
+        <tr><th scope="row">Kubernetes</th><td>Self-hosting and scaling</td><td><a href="https://github.com/hivegate-ai/deploy/tree/main/k8s">Kustomize manifests</a></td></tr>
+        <tr><th scope="row">AWS, Azure, Google Cloud</th><td>Your own cloud account</td><td><a href="https://github.com/hivegate-ai/hivegate/tree/main/deploy">ECS, Container Apps, Cloud Run</a></td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="persona">
-    <h3>Agno users</h3>
-    <p>Already building on Agno and want the missing production layer — sessions, tokens, prompts, queues — without re-inventing it.</p>
+</section>
+
+<section class="band" id="faq" aria-labelledby="faq-heading">
+  <div class="band-head">
+    <h2 id="faq-heading">Questions</h2>
   </div>
-</div>
-
-## Deploy options {#deploy}
-
-| Path | Best for | Config |
-|---|---|---|
-| **Render** | Easiest first deploy | [`render.yaml`](https://github.com/hivegate-ai/deploy/blob/main/render.yaml) (image-based) |
-| **Railway** | Best Postgres UX | [`railway.toml`](https://github.com/hivegate-ai/deploy/blob/main/railway.toml) |
-| **Koyeb** | Free nano tier | [`koyeb.yaml`](https://github.com/hivegate-ai/deploy/blob/main/koyeb.yaml) |
-| **Kubernetes** | Self-hosting / scale | [Kustomize manifests](https://github.com/hivegate-ai/deploy/tree/main/k8s) |
-| **AWS / Azure / GCP** | Cloud-native | [`deploy/`](https://github.com/hivegate-ai/hivegate/tree/main/deploy) (ECS, Container Apps, Cloud Run) |
-
-Full per-platform playbook with smoke tests and teardown: [Deploy guide](/deploy/) →
-
-## Get started {#cta}
-
-<div class="cta-row final">
-  <a class="btn" href="https://github.com/hivegate-ai/hivegate" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Footer CTA — Star on GitHub">⭐ Star on GitHub</a>
-  <a class="btn" href="/docs/" data-goatcounter-click="click_docs" data-goatcounter-title="Footer CTA — Read the docs">📖 Read the docs</a>
-  <a class="btn" href="/deploy/" data-goatcounter-click="click_deploy" data-goatcounter-title="Footer CTA — Deploy guide">🚀 Deploy in 5 min</a>
-</div>
-
-<p class="cta-note">MIT licensed. Contributions welcome — see <a href="https://github.com/hivegate-ai/hivegate/issues" rel="noopener">issues</a> on GitHub.</p>
-
-## FAQ
-
-### Is it production-ready?
-Yes, with caveats. The gateway, supervisor, queue, and toolkits are covered by an integration test suite that runs against real Postgres + Qdrant on every push. Pick your own observability backend and harden the auth before shipping to end users.
-
-### How does it relate to Agno?
-HiveGate is a service layer **on top of** [Agno](https://github.com/agno-agi/agno). Agno provides the agent primitives — LLM calls, tools, sessions. The gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, OAuth tokens, and operational surface.
-
-### Is it a request-routing API gateway like Kong?
-No. Despite the name, HiveGate is an **agent runtime**, not an HTTP request router. It serves and orchestrates AI agents over a REST API; it doesn't proxy traffic between services.
-
-### What models does it support?
-Anything Agno supports — OpenAI, Anthropic (Claude), Gemini, plus other providers via Agno. Configure per agent via the `model` field.
-
-### Does it need a vector database?
-Qdrant is bundled via docker-compose for the knowledge base. If you're not using knowledge entries, you can run without it. The chat path doesn't depend on Qdrant.
-
-### Can I run it without Docker?
-Yes — you need Postgres 14+ and (optionally) Qdrant reachable over the network. See the [deploy guide](/deploy/).
+  <div class="faq">
+    <details>
+      <summary>Is it production-ready?</summary>
+      <p>Yes, with caveats. The API, supervisor, job queue and toolkits are covered by an integration test suite that runs against real Postgres and Qdrant on every change. Choose your observability backend and review authentication before exposing it to end users.</p>
+    </details>
+    <details>
+      <summary>How does it relate to Agno?</summary>
+      <p>HiveGate runs on top of <a href="https://github.com/agno-agi/agno" rel="noopener">Agno</a>. Agno provides the agent itself: model calls, tools and memory. HiveGate adds the HTTP API, multi-tenancy, storage, supervisor teams, OAuth tokens and the operational side.</p>
+    </details>
+    <details>
+      <summary>Is it an API gateway like Kong?</summary>
+      <p>No. Despite the name, HiveGate doesn't route traffic between services. It runs AI agents and exposes them over a REST API.</p>
+    </details>
+    <details>
+      <summary>Which models can I use?</summary>
+      <p>Any model Agno supports, including OpenAI, Anthropic (Claude) and Gemini. Set the model per agent, or per request with the <code>model</code> field.</p>
+    </details>
+    <details>
+      <summary>Do I need a vector database?</summary>
+      <p>Only for the knowledge base. Qdrant comes with the Docker Compose setup, but chat works without it.</p>
+    </details>
+    <details>
+      <summary>Can I run it without Docker?</summary>
+      <p>Yes. You need Postgres 14 or later, and Qdrant if you use the knowledge base, reachable over the network. See the <a href="/deploy/">deploy guide</a>.</p>
+    </details>
+  </div>
+</section>

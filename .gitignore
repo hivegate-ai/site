@@ -9,3 +9,7 @@ Gemfile.lock
 node_modules/
 .idea/
 .vscode/
+
+# Synced at build time by .github/workflows/pages.yml
+_docs/
+_api-docs-src/
