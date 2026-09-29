@@ -10,17 +10,7 @@ All deploy paths are driven from [`hivegate-ai/deploy`](https://github.com/hiveg
 
 ## One-click platform deploys {#one-click}
 
-<div class="deploy-buttons">
-  <a href="https://railway.app/template?template=https://github.com/hivegate-ai/deploy" rel="noopener">
-    <img alt="Deploy on Railway" src="https://railway.app/button.svg">
-  </a>
-  <a href="https://render.com/deploy?repo=https://github.com/hivegate-ai/deploy" rel="noopener">
-    <img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg">
-  </a>
-  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/hivegate-ai/deploy" rel="noopener">
-    <img alt="Deploy to Koyeb" src="https://img.shields.io/badge/Deploy%20to-Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white">
-  </a>
-</div>
+{% include deploy-buttons.html %}
 
 | Platform | Config | Mechanism | Recommended for |
 |---|---|---|---|

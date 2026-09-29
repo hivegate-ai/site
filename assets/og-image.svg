@@ -1,19 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b0d12"/>
-      <stop offset="100%" stop-color="#11141b"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <g transform="translate(80, 80)">
-    <path d="M0 380 L120 100 L240 380 Z" fill="none" stroke="#7c9cff" stroke-width="6" stroke-linejoin="round"/>
-    <circle cx="120" cy="300" r="22" fill="#5fdcb1"/>
-  </g>
-  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#e6e8ee">
-    <text x="400" y="220" font-size="84" font-weight="700" letter-spacing="-2">HiveGate</text>
-    <text x="400" y="290" font-size="34" fill="#8b93a3" font-weight="400">Production FastAPI gateway for AI agents</text>
-    <text x="400" y="340" font-size="34" fill="#8b93a3" font-weight="400">Built on Agno · MIT · One-click deploy</text>
-    <text x="400" y="470" font-size="26" fill="#7c9cff" font-weight="500">github.com/hivegate-ai/hivegate</text>
+  <rect width="1200" height="630" fill="#1C1812"/>
+  <path d="M365.0 253.0 L418.7 284.0 L418.7 346.0 L365.0 377.0 L311.3 346.0 L311.3 284.0Z" fill="#262017" stroke="#3A3125" stroke-width="2"/><path d="M135.0 253.0 L188.7 284.0 L188.7 346.0 L135.0 377.0 L81.3 346.0 L81.3 284.0Z" fill="#262017" stroke="#3A3125" stroke-width="2"/><path d="M307.5 153.4 L361.2 184.4 L361.2 246.4 L307.5 277.4 L253.8 246.4 L253.8 184.4Z" fill="rgba(240,169,46,0.16)" stroke="#F0A92E" stroke-width="2"/><path d="M192.5 153.4 L246.2 184.4 L246.2 246.4 L192.5 277.4 L138.8 246.4 L138.8 184.4Z" fill="#262017" stroke="#3A3125" stroke-width="2"/><path d="M307.5 352.6 L361.2 383.6 L361.2 445.6 L307.5 476.6 L253.8 445.6 L253.8 383.6Z" fill="rgba(240,169,46,0.16)" stroke="#F0A92E" stroke-width="2"/><path d="M192.5 352.6 L246.2 383.6 L246.2 445.6 L192.5 476.6 L138.8 445.6 L138.8 383.6Z" fill="#262017" stroke="#3A3125" stroke-width="2"/><path d="M250.0 253.0 L303.7 284.0 L303.7 346.0 L250.0 377.0 L196.3 346.0 L196.3 284.0Z" fill="#F0A92E"/>
+  <g font-family="'Schibsted Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#F2EADB">
+    <text x="520" y="235" font-size="88" font-weight="700" letter-spacing="-3">HiveGate</text>
+    <text x="520" y="310" font-size="40" font-weight="500" letter-spacing="-0.5">Run your Agno agents as a</text>
+    <text x="520" y="360" font-size="40" font-weight="500" letter-spacing="-0.5">production API.</text>
+    <text x="520" y="470" font-size="26" fill="#B9AE98">Open source · MIT · hivegate.dev</text>
   </g>
 </svg>

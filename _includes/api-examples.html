@@ -1,0 +1,130 @@
+<div class="api" data-tabs>
+  <div class="api-tabs" role="tablist" aria-label="API examples">
+    <button role="tab" id="tab-chat" aria-controls="panel-chat" aria-selected="true">Chat with an agent</button>
+    <button role="tab" id="tab-team" aria-controls="panel-team" aria-selected="false" tabindex="-1">Run a team</button>
+    <button role="tab" id="tab-approve" aria-controls="panel-approve" aria-selected="false" tabindex="-1">Approve a tool call</button>
+    <button role="tab" id="tab-oauth" aria-controls="panel-oauth" aria-selected="false" tabindex="-1">Connect Google</button>
+  </div>
+
+  <div class="api-panel" role="tabpanel" id="panel-chat" aria-labelledby="tab-chat">
+    <p class="api-note">Each user gets their own session. HiveGate stores the history, so the next message picks up where this one left off.</p>
+    <div class="api-pair">
+      <figure class="api-code">
+        <figcaption>Request</figcaption>
+<pre><code>curl -X <span class="t-m">POST</span> $HIVEGATE/v2/agents/customer-support/chat \
+  -H <span class="t-s">"X-API-Key: agk_…"</span> \
+  -d <span class="t-s">'{
+    "message": "I need help resetting my password",
+    "user_id": "user-42",
+    "session_id": "sess-abc123",
+    "stream": false
+  }'</span></code></pre>
+      </figure>
+      <figure class="api-code">
+        <figcaption>Response <span class="t-ok">200</span></figcaption>
+<pre><code>{
+  <span class="t-k">"content"</span>: <span class="t-s">"I can help you reset your password…"</span>,
+  <span class="t-k">"agent_id"</span>: <span class="t-s">"customer-support"</span>,
+  <span class="t-k">"session_id"</span>: <span class="t-s">"sess-abc123"</span>,
+  <span class="t-k">"model"</span>: <span class="t-s">"gemini-2.5-pro"</span>,
+  <span class="t-k">"status"</span>: <span class="t-s">"completed"</span>,
+  <span class="t-k">"run_id"</span>: <span class="t-s">"run-f47ac10b"</span>
+}</code></pre>
+      </figure>
+    </div>
+    <a class="api-more" href="/docs/api-agents/">Agents API reference</a>
+  </div>
+
+  <div class="api-panel" role="tabpanel" id="panel-team" aria-labelledby="tab-team" hidden>
+    <p class="api-note">A team gets one request. The supervisor splits the work between its agents and returns one answer, with token usage for the whole run.</p>
+    <div class="api-pair">
+      <figure class="api-code">
+        <figcaption>Request</figcaption>
+<pre><code>curl -X <span class="t-m">POST</span> $HIVEGATE/v2/teams/support-team/runs \
+  -H <span class="t-s">"X-API-Key: agk_…"</span> \
+  -d <span class="t-s">'{
+    "message": "A customer can't log in after changing their email",
+    "user_id": "user-42",
+    "session_id": "team-sess-001",
+    "stream": false
+  }'</span></code></pre>
+      </figure>
+      <figure class="api-code">
+        <figcaption>Response <span class="t-ok">200</span></figcaption>
+<pre><code>{
+  <span class="t-k">"content"</span>: <span class="t-s">"The customer needs to verify their new email…"</span>,
+  <span class="t-k">"team_id"</span>: <span class="t-s">"support-team"</span>,
+  <span class="t-k">"status"</span>: <span class="t-s">"completed"</span>,
+  <span class="t-k">"token_usage"</span>: {
+    <span class="t-k">"input_tokens"</span>: <span class="t-n">1250</span>,
+    <span class="t-k">"output_tokens"</span>: <span class="t-n">340</span>
+  },
+  <span class="t-k">"run_id"</span>: <span class="t-s">"run-team-abc"</span>
+}</code></pre>
+      </figure>
+    </div>
+    <a class="api-more" href="/docs/api-teams/">Teams API reference</a>
+  </div>
+
+  <div class="api-panel" role="tabpanel" id="panel-approve" aria-labelledby="tab-approve" hidden>
+    <p class="api-note">When an agent wants to do something that needs sign-off, like sending an email, the run pauses. It continues once a person approves.</p>
+    <div class="api-pair">
+      <figure class="api-code">
+        <figcaption>The run pauses</figcaption>
+<pre><code>{
+  <span class="t-k">"status"</span>: <span class="t-s">"paused"</span>,
+  <span class="t-k">"run_id"</span>: <span class="t-s">"run-abc"</span>,
+  <span class="t-k">"tools"</span>: [{
+    <span class="t-k">"tool_call_id"</span>: <span class="t-s">"tc-001"</span>,
+    <span class="t-k">"tool_name"</span>: <span class="t-s">"send_email"</span>,
+    <span class="t-k">"requires_confirmation"</span>: <span class="t-n">true</span>,
+    <span class="t-k">"tool_args"</span>: { <span class="t-k">"to"</span>: <span class="t-s">"jane@acme.com"</span> }
+  }]
+}</code></pre>
+      </figure>
+      <figure class="api-code">
+        <figcaption>A person approves it</figcaption>
+<pre><code>curl -X <span class="t-m">POST</span> $HIVEGATE/v2/approvals/run-abc:tc-001/approve \
+  -H <span class="t-s">"X-API-Key: agk_…"</span>
+
+{
+  <span class="t-k">"job_id"</span>: <span class="t-s">"run-abc:tc-001"</span>,
+  <span class="t-k">"status"</span>: <span class="t-s">"approved"</span>,
+  <span class="t-k">"message"</span>: <span class="t-s">"Tool call approved"</span>
+}</code></pre>
+      </figure>
+    </div>
+    <a class="api-more" href="/docs/api-approvals/">Approvals API reference</a>
+  </div>
+
+  <div class="api-panel" role="tabpanel" id="panel-oauth" aria-labelledby="tab-oauth" hidden>
+    <p class="api-note">Store a user's Google or Microsoft token once. Their agents can then use Gmail, Calendar, Contacts and Drive, and HiveGate refreshes the token when it expires.</p>
+    <div class="api-pair">
+      <figure class="api-code">
+        <figcaption>Request</figcaption>
+<pre><code>curl -X <span class="t-m">POST</span> $HIVEGATE/v2/users/user-42/tokens \
+  -H <span class="t-s">"X-API-Key: agk_…"</span> \
+  -d <span class="t-s">'{
+    "integration_key": "google",
+    "provider": "google",
+    "token_type": "oauth2",
+    "token_data": {
+      "access_token": "ya29…",
+      "refresh_token": "1//0dx…"
+    },
+    "scopes": ["calendar", "email"]
+  }'</span></code></pre>
+      </figure>
+      <figure class="api-code">
+        <figcaption>Response <span class="t-ok">201</span></figcaption>
+<pre><code>{
+  <span class="t-k">"integration_key"</span>: <span class="t-s">"google"</span>,
+  <span class="t-k">"provider"</span>: <span class="t-s">"google"</span>,
+  <span class="t-k">"token_type"</span>: <span class="t-s">"oauth2"</span>,
+  <span class="t-k">"message"</span>: <span class="t-s">"Token stored successfully for google"</span>
+}</code></pre>
+      </figure>
+    </div>
+    <a class="api-more" href="/docs/api-tokens/">Tokens API reference</a>
+  </div>
+</div>
