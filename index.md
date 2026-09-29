@@ -117,23 +117,23 @@ home: true
   <div class="quickstart">
     <ol class="steps steps-code">
       <li>
-        <h3>Clone it and start the databases</h3>
+        <h3>Clone it and add your key</h3>
 <pre><code>git clone https://github.com/hivegate-ai/hivegate
 cd hivegate
-docker compose up -d</code></pre>
+cp .env.example .env</code></pre>
+        <p>In <code>.env</code>, set <code>GOOGLE_API_KEY</code> and uncomment <code>AUTH_DISABLED=true</code> for local use. The server reads <code>.env</code> when it starts, so do this first.</p>
+      </li>
+      <li>
+        <h3>Start the databases and the API</h3>
+<pre><code>docker compose up -d
+./scripts/dev_setup.sh
+source .venv/bin/activate
+./scripts/start_server.sh</code></pre>
         <p>This starts Postgres and Qdrant and loads some demo agents.</p>
       </li>
       <li>
-        <h3>Start the API</h3>
-<pre><code>./scripts/dev_setup.sh
-source .venv/bin/activate
-./scripts/start_server.sh</code></pre>
-      </li>
-      <li>
         <h3>Chat with the demo agent</h3>
-<pre><code>export GOOGLE_API_KEY="your-gemini-key"
-
-curl -X POST \
+<pre><code>curl -X POST \
   http://localhost:8000/v2/agents/demo-assistant/chat \
   -H 'Content-Type: application/json' \
   -d '{"message": "Hi", "user_id": "u1",
