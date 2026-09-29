@@ -1,14 +1,14 @@
-title: "Agents Gateway"
+title: "HiveGate"
 tagline: "Production FastAPI gateway for AI agents, built on Agno. MIT-licensed, deploy in one click."
 description: >-
-  Agents Gateway is an open-source FastAPI service for serving, orchestrating,
+  HiveGate is an open-source FastAPI service for serving, orchestrating,
   and managing AI agents. Built on Agno. Includes a supervisor/worker
   execution platform, agent teams, prompt versioning, OAuth token storage,
   and pre-built toolkits for Calendar, Email, Contacts, and Drive (Google &
   Microsoft). MIT-licensed. Deploy in one click to Render, Railway, or Koyeb.
-url: "https://agentsgateway.dev"
+url: "https://hivegate.dev"
 baseurl: ""
-repository: liberzon/agents-gateway
+repository: hivegate-ai/hivegate
 github_username: liberzon
 author:
   name: Yair Liberzon
@@ -41,7 +41,7 @@ exclude:
   - _api-docs-src
 
 # Treat /_docs/*.md as top-level pages (populated by pages.yml at build time
-# from liberzon/agents-gateway-docs). Local builds work without it — folder
+# from hivegate-ai/docs). Local builds work without it — folder
 # is simply empty.
 include:
   - _docs
@@ -56,10 +56,10 @@ analytics:
   provider: goatcounter
 
   # GoatCounter — your-code.goatcounter.com → put "your-code" here
-  goatcounter_code: agents-gateway
+  goatcounter_code: hivegate
 
   # Plausible — domain you registered in Plausible (uses official cloud)
-  plausible_domain: agentsgateway.dev
+  plausible_domain: hivegate.dev
 
   # Cloudflare Web Analytics — beacon token from CF dashboard
   cloudflare_token: ""

@@ -11,9 +11,9 @@
     <circle cx="120" cy="300" r="22" fill="#5fdcb1"/>
   </g>
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#e6e8ee">
-    <text x="400" y="220" font-size="84" font-weight="700" letter-spacing="-2">Agents Gateway</text>
+    <text x="400" y="220" font-size="84" font-weight="700" letter-spacing="-2">HiveGate</text>
     <text x="400" y="290" font-size="34" fill="#8b93a3" font-weight="400">Production FastAPI gateway for AI agents</text>
     <text x="400" y="340" font-size="34" fill="#8b93a3" font-weight="400">Built on Agno · MIT · One-click deploy</text>
-    <text x="400" y="470" font-size="26" fill="#7c9cff" font-weight="500">github.com/liberzon/agents-gateway</text>
+    <text x="400" y="470" font-size="26" fill="#7c9cff" font-weight="500">github.com/hivegate-ai/hivegate</text>
   </g>
 </svg>

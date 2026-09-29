@@ -1,13 +1,13 @@
 ---
-title: "Docs — Agents Gateway"
-description: "Architecture, API reference, configuration, and operational guide for Agents Gateway."
+title: "Docs — HiveGate"
+description: "Architecture, API reference, configuration, and operational guide for HiveGate."
 permalink: /docs/
 ---
 
 # Documentation
 
 A condensed, link-out-rich overview. Full source-of-truth is the
-[README in `liberzon/agents-gateway`](https://github.com/liberzon/agents-gateway#readme) and the
+[README in `hivegate-ai/hivegate`](https://github.com/hivegate-ai/hivegate#readme) and the
 [interactive `/docs` page](http://localhost:8000/docs) on your running instance.
 
 ## Architecture {#architecture}
@@ -19,7 +19,7 @@ A condensed, link-out-rich overview. Full source-of-truth is the
                                   │  HTTPS / X-API-Key
                                   ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  Agents Gateway (FastAPI)                                       │
+│  HiveGate (FastAPI)                                             │
 │                                                                 │
 │  ┌─────────────┐  ┌────────────┐  ┌──────────────────────────┐  │
 │  │ /v2/agents  │  │ /v2/teams  │  │ /v2/{prompts,knowledge,…}│  │
@@ -69,7 +69,7 @@ All endpoints are documented on a running instance at `/docs` (OpenAPI). Summary
 
 ## Configuration {#config}
 
-Core environment variables — full list in the [README](https://github.com/liberzon/agents-gateway#environment-variables):
+Core environment variables — full list in the [README](https://github.com/hivegate-ai/hivegate#environment-variables):
 
 | Variable | Required | Purpose |
 |---|---|---|
@@ -92,13 +92,13 @@ Core environment variables — full list in the [README](https://github.com/libe
 
 All toolkits ship with confirmation-based workflows (user reviews before execution) and OAuth token management with auto-refresh.
 
-Detail: [`toolkits/README.md`](https://github.com/liberzon/agents-gateway/blob/main/toolkits/README.md).
+Detail: [`toolkits/README.md`](https://github.com/hivegate-ai/hivegate/blob/main/toolkits/README.md).
 
 ## Supervisor platform {#supervisor}
 
 Multi-agent execution with classification, job queues, approval flows, and containerized workers. Workers can run as Docker containers or Kubernetes pods, fed by an in-Postgres job queue.
 
-Detail in the [README](https://github.com/liberzon/agents-gateway#supervisor-platform) and `supervisor/`, `remote_agent/`.
+Detail in the [README](https://github.com/hivegate-ai/hivegate#supervisor-platform) and `supervisor/`, `remote_agent/`.
 
 ## Database schema {#schema}
 
@@ -138,7 +138,7 @@ pytest tests/v2/                 # Tests
 ## Detailed reference {#detailed}
 
 Per-endpoint and per-subsystem deep dives (synced at build time from
-[`liberzon/agents-gateway-docs`](https://github.com/liberzon/agents-gateway-docs)):
+[`hivegate-ai/docs`](https://github.com/hivegate-ai/docs)):
 
 **Getting started**
 - [Overview](/docs/overview/) — architecture and key concepts
@@ -173,6 +173,6 @@ Per-endpoint and per-subsystem deep dives (synced at build time from
 
 ## Support
 
-- [Issue tracker](https://github.com/liberzon/agents-gateway/issues)
+- [Issue tracker](https://github.com/hivegate-ai/hivegate/issues)
 - [Agno docs](https://docs.agno.com)
 - [Deploy guide](/deploy/)
