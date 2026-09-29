@@ -3,6 +3,13 @@ name: Build & deploy GitHub Pages
 on:
   push:
     branches: [main]
+  # Fired by hivegate-ai/docs on every push to its main branch, so the synced
+  # /docs/* reference pages update without a site commit.
+  repository_dispatch:
+    types: [docs-updated]
+  # Daily rebuild as a fallback in case a docs dispatch is missed.
+  schedule:
+    - cron: "17 5 * * *"
   workflow_dispatch:
 
 permissions:
@@ -74,3 +81,21 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Tell Bing, Yandex and other IndexNow engines that the site changed.
+  # Skipped on the daily fallback rebuild, which usually changes nothing.
+  indexnow:
+    needs: deploy
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit sitemap URLs to IndexNow
+        env:
+          INDEXNOW_KEY: 17edebe410ddc0fe984d8f6784bc975a
+        run: |
+          set -euo pipefail
+          urls=$(curl -fsS https://hivegate.dev/sitemap.xml | grep -o '<loc>[^<]*</loc>' | sed -e 's#<loc>##' -e 's#</loc>##')
+          body=$(printf '%s\n' "$urls" | python3 -c 'import json,os,sys; print(json.dumps({"host": "hivegate.dev", "key": os.environ["INDEXNOW_KEY"], "keyLocation": "https://hivegate.dev/" + os.environ["INDEXNOW_KEY"] + ".txt", "urlList": [u for u in sys.stdin.read().split() if u]}))')
+          status=$(curl -sS -o /dev/null -w '%{http_code}' -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' -d "$body")
+          echo "IndexNow responded $status for $(printf '%s\n' "$urls" | wc -l) URLs"
+          case "$status" in 200|202) ;; *) exit 1 ;; esac
