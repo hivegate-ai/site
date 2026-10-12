@@ -3,7 +3,7 @@
 
 Each page gets the title of its own H1, a description written for search results,
 and a last_modified_at date from the docs repo's git history, which jekyll-sitemap
-emits as <lastmod>. The site's own pages (index, docs, deploy) get the same date
+emits as <lastmod>. The site's own pages (index, docs, deploy, blog) get the same date
 stamp from this repo's history.
 
 Usage: scripts/sync_docs.py <docs-checkout> <out-dir>
@@ -47,7 +47,7 @@ DESCRIPTIONS = {
     "toolkits": "HiveGate's agent toolkits: Calendar, Email, Contacts and Drive for Google and Microsoft, Claude Code and managed agents, with approval before writes.",
 }
 
-SITE_PAGES = ["index.md", "docs.md", "deploy.md"]
+SITE_PAGES = ["index.md", "docs.md", "deploy.md", "blog.md"]
 
 
 def last_modified(repo: Path, path: str) -> str:
