@@ -1,5 +1,5 @@
 ---
-title: "Deploy — HiveGate"
+title: "Deploy"
 description: "One-click deploy to Render, Railway, or Koyeb. Kubernetes via Kustomize. Cloud manifests for AWS, Azure, GCP."
 permalink: /deploy/
 ---

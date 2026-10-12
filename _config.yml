@@ -39,6 +39,7 @@ exclude:
   - vendor
   - .github
   - _api-docs-src
+  - scripts
 
 # Treat /_docs/*.md as top-level pages (populated by pages.yml at build time
 # from hivegate-ai/docs). Local builds work without it — folder
