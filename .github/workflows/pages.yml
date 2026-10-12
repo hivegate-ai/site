@@ -26,6 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # sync_docs.py dates the site's own pages from git history
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
@@ -36,33 +38,9 @@ jobs:
       - name: Pull detailed API docs from hivegate-ai/docs
         run: |
           set -euo pipefail
-          git clone --depth 1 https://github.com/hivegate-ai/docs.git _api-docs-src
-          mkdir -p _docs
-          # Skip Sphinx-only files (conf.py, Makefile, _build/, API_DOCUMENTATION.md is huge — include separately)
-          for f in _api-docs-src/*.md; do
-            name=$(basename "$f")
-            slug="${name%.md}"
-            # Skip the all-in-one mega-file; we want per-topic pages for clean URLs/SEO
-            if [ "$slug" = "API_DOCUMENTATION" ]; then
-              continue
-            fi
-            # Skip the docs-repo index.md — we have our own /docs/ page
-            if [ "$slug" = "index" ]; then
-              continue
-            fi
-            # Pretty title: "api-agents" → "API Agents"
-            title=$(echo "$slug" | sed -E 's/-/ /g' | awk '{for(i=1;i<=NF;i++)$i=toupper(substr($i,1,1)) substr($i,2)} 1')
-            {
-              echo "---"
-              echo "layout: default"
-              echo "title: \"$title — HiveGate docs\""
-              echo "permalink: /docs/$slug/"
-              echo "---"
-              echo ""
-            } > "_docs/$name"
-            cat "$f" >> "_docs/$name"
-          done
-          echo "Synced $(ls _docs | wc -l) detailed doc pages."
+          # Full history: each page's <lastmod> comes from its last commit.
+          git clone https://github.com/hivegate-ai/docs.git _api-docs-src
+          python3 scripts/sync_docs.py _api-docs-src _docs
 
       - name: Build site
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"

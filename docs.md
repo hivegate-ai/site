@@ -1,7 +1,9 @@
 ---
-title: "Docs — HiveGate"
+title: "Documentation"
 description: "Architecture, API reference, configuration, and operational guide for HiveGate."
 permalink: /docs/
+redirect_from:
+  - /docs/README/
 ---
 
 # Documentation

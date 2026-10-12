@@ -1,43 +1,52 @@
 # HiveGate
 
-> Production FastAPI gateway for AI agents, built on top of Agno. MIT-licensed. Deploy in one click; scale to your own Kubernetes when you outgrow it.
+> Open-source FastAPI service that runs Agno agents as a production REST API. MIT-licensed. Deploy in one click; scale to your own Kubernetes when you outgrow it.
 
 ## What it is
 
-HiveGate is an open-source service layer on top of [Agno](https://github.com/agno-agi/agno). Agno provides the agent primitives (LLM calls, tools, sessions); the gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, and operational surface. Source: <https://github.com/hivegate-ai/hivegate> (MIT). Container image: `ghcr.io/hivegate-ai/hivegate:latest` (multi-arch).
+HiveGate is an open-source service layer on top of [Agno](https://github.com/agno-agi/agno). Agno provides the agent primitives (LLM calls, tools, memory, teams); HiveGate provides the HTTP API, per-user sessions and credentials, approvals, persistence, supervisor orchestration and the operational surface. Source: <https://github.com/hivegate-ai/hivegate> (MIT). Container image: `ghcr.io/hivegate-ai/hivegate:latest` (multi-arch).
+
+HiveGate is not a request-routing API gateway like Kong; it runs AI agents and exposes them over a REST API. If your agents are defined in code and Agno's own AgentOS covers what you need, use AgentOS. HiveGate is for agents that act *for your users*, in their own accounts, and are managed as data rather than code.
 
 ## Features
 
-- **Agent management** — Create, configure, version, and serve agents via a REST API. Per-agent prompts, models, toolkits, knowledge.
+- **Agent management** — Create, configure and serve agents through a REST API. Per-agent prompts, models, toolkits and knowledge, with no redeploy.
+- **Per-user OAuth tokens** — Store each user's Google or Microsoft tokens once; HiveGate refreshes them, and the Calendar, Email, Contacts and Drive toolkits act as that user.
+- **Approval before risky actions** — A tool call such as sending an email pauses the run (`status: "paused"`) until the caller approves or denies it, then the run resumes through `POST /v2/agents/{id}/chat/commit`.
 - **Teams** — Compose agents into teams for coordinated multi-agent workflows. Coordinate or supervisor modes.
-- **Supervisor platform** — Job queue, approval flows, containerized workers (Docker & K8s). Production-ready execution.
-- **Toolkits** — Pre-built OAuth-managed integrations for Calendar, Email, Contacts, and Drive — Google & Microsoft. Confirmation-based workflow with auto-refresh.
-- **Prompts service** — Versioned prompt templates with pluggable storage (PostgreSQL or external prompts service). Set via `PROMPT_STORAGE_BACKEND`.
-- **Knowledge base** — Per-tenant document indexing on Qdrant. Tag and retrieve at agent or team scope.
-- **Observability** — Pluggable OpenTelemetry tracing and logging. `console`, `otlp`, `sentry`, `logtail`.
-- **One-click deploy** — Render, Railway, Koyeb buttons backed by a prebuilt multi-arch image on GHCR. Kubernetes Kustomize manifests included. Cloud manifests for AWS (ECS + CloudFormation), Azure (Container Apps + Bicep), GCP (Cloud Run).
+- **Supervisor platform** — Job queue, approval flows, containerized workers (Docker & Kubernetes), including Claude Code and managed-agent workers.
+- **Prompts service** — Versioned prompt templates with pluggable storage: `postgres` (default), `langsmith` or an external `service`. Set via `PROMPT_STORAGE_BACKEND`.
+- **Knowledge base** — Per-tenant, per-collection document indexing on Qdrant.
+- **MCP tools** — Chat agents can use MCP servers over Streamable HTTP.
+- **Models** — Anthropic, OpenAI, Google, xAI, Z.ai and DeepSeek. A request can name a pinned model id or a latest-of-a-tier alias such as `anthropic:sonnet-latest`; otherwise `DEFAULT_CHAT_MODEL` applies. Claude models run with prompt caching on.
+- **Usage and cost** — Every chat, commit, MCP and team run records its tokens and USD cost in `token_usage`, readable through the `/usage` API (live, summary, timeseries, calls, prices). Unknown model prices are reported as unpriced, never guessed.
+- **Observability** — Pluggable OpenTelemetry tracing and logging: `console`, `otlp`, `sentry`, `logtail`.
+- **One-click deploy** — Render, Railway and Koyeb buttons backed by a prebuilt multi-arch image on GHCR. Kubernetes Kustomize manifests, plus cloud manifests for AWS (ECS + CloudFormation), Azure (Container Apps + Bicep) and GCP (Cloud Run).
 
 ## Quickstart
+
+Prerequisites: Docker running, Python 3.11+, and an API key for a model provider (the demo agents use Gemini).
 
 ```sh
 git clone https://github.com/hivegate-ai/hivegate
 cd hivegate
+cp .env.example .env
+```
 
+Edit `.env` **before starting the server**; it reads `.env` once at startup, so a key exported in another shell won't reach it. Set `GOOGLE_API_KEY` (or another provider key), and for local use uncomment `AUTH_DISABLED=true`. Never enable that on a deployment other people can reach.
+
+```sh
 # Start PostgreSQL + Qdrant (seeds demo agents automatically)
 docker compose up -d
 
-# Set up Python environment
+# Set up the Python environment and start the API
 ./scripts/dev_setup.sh && source .venv/bin/activate
-
-# Start the API
 ./scripts/start_server.sh
 ```
 
 Then chat with the demo agent:
 
 ```sh
-export GOOGLE_API_KEY="your-gemini-key"
-
 curl -X POST http://localhost:8000/v2/agents/demo-assistant/chat \
   -H 'Content-Type: application/json' \
   -d '{"message":"What can you help me with?","user_id":"u1","session_id":"s1","timezone":"UTC","locale":"en","stream":false}'
@@ -47,21 +56,23 @@ Interactive OpenAPI docs at `http://localhost:8000/docs`.
 
 ## API surface
 
-All endpoints under `/v2/*`, authed via `X-API-Key`. Admin endpoints under `/admin/*` via `X-Admin-Secret`. Set `AUTH_DISABLED=true` to bypass for local dev.
+Endpoints under `/v2/*` authenticate with `X-API-Key`; admin endpoints under `/admin/*` with `X-Admin-Secret`. `/usage/*` takes a key with the `usage:read` scope or the admin secret, and a key whose only scope is `usage:read` is refused on `/v2`. Set `AUTH_DISABLED=true` to bypass authentication for local development only.
 
 | Resource | Endpoint | Purpose |
 |---|---|---|
-| Agents | `GET/POST /v2/agents` | CRUD agents |
-| Agent chat | `POST /v2/agents/{id}/chat` | Chat (stream or non-stream) |
-| Teams | `GET/POST /v2/teams` | CRUD teams |
+| Agents | `GET/POST /v2/agents` | List and create agents |
+| Agent chat | `POST /v2/agents/{id}/chat` | Chat (streamed or JSON) |
+| Resume a paused run | `POST /v2/agents/{id}/chat/commit` | Approve or deny tool calls, then continue |
+| Teams | `GET/POST /v2/teams` | List and create teams |
 | Team run | `POST /v2/teams/{id}/runs` | Execute a team |
 | Knowledge | `GET/POST /v2/knowledge/{tenant_id}` | Per-tenant knowledge |
-| Tokens | `GET/POST /v2/users/{user_id}/tokens` | OAuth token storage |
+| Tokens | `GET/POST /v2/users/{user_id}/tokens` | Per-user OAuth token storage |
 | Prompts | `GET/POST /v2/prompts` | Versioned prompts |
 | Skills | `GET/POST /v2/skills` | Reusable skills |
 | Engines | `GET/POST /v2/engines` | Supervisor engines |
 | Targets | `GET/POST /v2/targets` | Supervisor targets |
-| Approvals | `GET/POST /v2/approvals` | Pending approval review |
+| Approvals | `GET/POST /v2/approvals` | Approve or deny pending supervisor jobs |
+| Usage | `GET /usage/{live,summary,timeseries,calls,prices}` | Token usage and cost |
 
 ## Deploy
 
@@ -79,7 +90,7 @@ Full per-platform smoke-test playbook: <https://github.com/hivegate-ai/deploy/bl
 
 ## Architecture
 
-Single-process FastAPI service. Stateless by default; state lives in Postgres (agents, teams, sessions, prompts, tokens, queue, knowledge metadata) and Qdrant (knowledge vectors). LLM calls go to the configured provider (OpenAI, Anthropic, Gemini, etc.) through Agno.
+Single-process FastAPI service. Stateless by default; state lives in Postgres (agents, teams, sessions, prompts, tokens, queue, knowledge metadata) and Qdrant (knowledge vectors). LLM calls go to the configured provider (Anthropic, OpenAI, Google, xAI, Z.ai or DeepSeek) through Agno.
 
 Supervisor workers run as separate containers (Docker or K8s pods), pulling jobs from an in-Postgres queue. Workers can be CPU-only or GPU-backed depending on workload.
 
@@ -89,9 +100,11 @@ Supervisor workers run as separate containers (Docker or K8s pods), pulling jobs
 |---|---|---|
 | `DB_HOST` / `DB_PORT` / `DB_USER` / `DB_PASS` / `DB_DATABASE` | Yes | Postgres connection |
 | `ADMIN_SECRET` | Yes (prod) | Admin endpoint auth |
-| `GOOGLE_API_KEY` / `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | ≥1 | LLM provider |
+| `GOOGLE_API_KEY` / `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` / `XAI_API_KEY` / `ZAI_API_KEY` / `DEEPSEEK_API_KEY` | ≥1 | LLM provider |
+| `DEFAULT_CHAT_MODEL` | No | Model used when a request names none, e.g. `anthropic:sonnet-latest` |
+| `PRICING_OVERRIDES` | No | JSON of per-model prices (USD per million tokens) for usage metering |
 | `QDRANT_URL` | No | Vector DB for knowledge |
-| `PROMPT_STORAGE_BACKEND` | No | `postgres` (default) or `service` |
+| `PROMPT_STORAGE_BACKEND` | No | `postgres` (default), `langsmith` or `service` |
 | `OTEL_TRACING_BACKEND` | No | `console`, `otlp`, `sentry` |
 | `OTEL_LOGGING_BACKEND` | No | `console`, `otlp`, `logtail` |
 | `WAIT_FOR_DB` | No | `true` to wait for Postgres before starting |
@@ -101,5 +114,7 @@ Supervisor workers run as separate containers (Docker or K8s pods), pulling jobs
 
 - License: MIT — <https://github.com/hivegate-ai/hivegate/blob/main/LICENSE>
 - Issues: <https://github.com/hivegate-ai/hivegate/issues>
+- Questions: <https://github.com/hivegate-ai/hivegate/discussions>
+- Roadmap: <https://github.com/hivegate-ai/hivegate/issues/72>
 - Agno docs: <https://docs.agno.com>
 - Organization: HiveGate — <https://github.com/hivegate-ai> · hello@hivegate.dev
