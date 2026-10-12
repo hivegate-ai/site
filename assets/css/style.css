@@ -346,6 +346,21 @@ td a code { background: none; border: 0; padding: 0; }
 .prose table th, .prose table td { min-width: 7rem; }
 a > code { color: inherit; background: none; border-color: transparent; padding: 0; }
 
+/* Blog */
+
+.post-kicker { color: var(--pollen); font-size: 0.95rem; margin: 0 0 0.75rem; }
+.post-kicker a { color: var(--pollen); }
+.post-kicker a:hover { color: var(--honey); }
+.post-lead { font-size: 1.15rem; color: var(--pollen) !important; margin: 0 0 2rem !important; max-width: 60ch; }
+.post-list { list-style: none; padding: 0 !important; margin: 2rem 0 0 !important; }
+.post-list li { border-top: 1px solid var(--propolis); padding: 1.5rem 0; margin: 0; }
+.post-list li::marker { content: none; }
+.post-list time { color: var(--pollen); font-size: 0.9rem; }
+.post-list h2 { font-size: 1.35rem; margin: 0.3rem 0 0.5rem; padding: 0; border: 0; }
+.post-list h2 a { color: var(--wax); text-decoration: none; }
+.post-list h2 a:hover { color: var(--honey); }
+.post-list p { color: var(--pollen); margin: 0; }
+
 /* Copy button on code blocks */
 
 .code-block { position: relative; }

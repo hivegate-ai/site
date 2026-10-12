@@ -72,3 +72,10 @@ defaults:
     values:
       layout: default
       image: /assets/og-image.png
+  # Blog posts: _posts/YYYY-MM-DD-slug.md is served at /blog/slug/.
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /blog/:title/

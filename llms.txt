@@ -8,6 +8,12 @@ HiveGate is not a request-routing API gateway like Kong; it runs AI agents and e
 - [Landing page](https://hivegate.dev/): tagline, features, deploy buttons, quickstart
 - [Docs](https://hivegate.dev/docs/): architecture diagram, API reference, configuration, toolkits, supervisor platform, database schema, observability
 - [Deploy guide](https://hivegate.dev/deploy/): one-click platforms, Kubernetes, cloud-specific manifests, smoke test, operational notes
+- [Blog](https://hivegate.dev/blog/): practical write-ups with real endpoints and snippets
+
+## Blog
+- [Deploying Agno agents to production as a REST API](https://hivegate.dev/blog/deploy-agno-agents-production-rest-api/): per-user sessions, Postgres-backed history, API keys, streaming, one-click Docker deploy, and when Agno's AgentOS is enough
+- [Per-user Google and Microsoft OAuth for AI agents](https://hivegate.dev/blog/per-user-google-microsoft-oauth-ai-agents/): storing each user's tokens encrypted, automatic refresh, and how the Gmail, Outlook, Calendar, Contacts and Drive toolkits use them
+- [Human approval before risky agent tool calls](https://hivegate.dev/blog/human-approval-agent-tool-calls/): how a run pauses on a write tool, approving, editing or denying it through the commit API, and what is recorded
 
 ## Detailed reference (auto-synced from hivegate-ai/docs)
 - [Overview](https://hivegate.dev/docs/overview/): architecture and key concepts
