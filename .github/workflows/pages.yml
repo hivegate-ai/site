@@ -46,6 +46,8 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      - name: Publish markdown copies of pages for LLM readers
+        run: python3 scripts/md_twins.py _site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site

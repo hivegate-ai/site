@@ -4,6 +4,8 @@
 
 HiveGate is not a request-routing API gateway like Kong; it runs AI agents and exposes them over HTTP. If your agents are defined in code and Agno's own AgentOS covers your needs, use AgentOS.
 
+Every docs page and blog post is also served as plain markdown at the same URL with `.md` (for example https://hivegate.dev/docs/quickstart.md); the full corpus is in [llms-full.txt](https://hivegate.dev/llms-full.txt).
+
 ## Site
 - [Landing page](https://hivegate.dev/): tagline, features, deploy buttons, quickstart
 - [Docs](https://hivegate.dev/docs/): architecture diagram, API reference, configuration, toolkits, supervisor platform, database schema, observability
