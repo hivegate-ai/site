@@ -17,6 +17,7 @@ Every docs page and blog post is also served as plain markdown at the same URL w
 - [Per-user Google and Microsoft OAuth for AI agents](https://hivegate.dev/blog/per-user-google-microsoft-oauth-ai-agents/): storing each user's tokens encrypted, automatic refresh, and how the Gmail, Outlook, Calendar, Contacts and Drive toolkits use them
 - [Human approval before risky agent tool calls](https://hivegate.dev/blog/human-approval-agent-tool-calls/): how a run pauses on a write tool, approving, editing or denying it through the commit API, and what is recorded
 - [LLM token usage and cost tracking per user and tenant](https://hivegate.dev/blog/llm-token-usage-cost-tracking/): the token_usage row behind every model call, the /usage API by user, tenant and agent, how prices are applied, and Claude prompt caching
+- [Claude prompt caching for agents: what breaks the cache](https://hivegate.dev/blog/claude-prompt-caching-agents/): how cache breakpoints work for Agno agents, why a timestamp or per-user value in the system prompt stops cross-run cache hits, and how to check the hit rate with /usage
 
 ## Detailed reference (auto-synced from hivegate-ai/docs)
 - [Overview](https://hivegate.dev/docs/overview/): architecture and key concepts
