@@ -56,6 +56,8 @@ hivegate serve         # http://127.0.0.1:8000/docs
 
 Compose starts Postgres and Qdrant, creates the schema and seeds a handful of demo agents and teams. Since 0.3.1 it publishes their ports on `127.0.0.1` only, so the databases aren't reachable from your network by accident.
 
+One known wart: `docker compose ps` reports Qdrant as unhealthy even though it works. The healthcheck calls `curl`, which the Qdrant image doesn't have, so `docker compose up -d --wait` fails too. That's [#135](https://github.com/hivegate-ai/hivegate/issues/135), a good first issue if you want to fix it.
+
 `hivegate serve` loads `.env` from the current directory and starts the API on `127.0.0.1:8000`. If no model key is set, it starts anyway and prints a warning, because agents can't answer without one. The interactive OpenAPI docs are at `/docs`.
 
 ## First calls
