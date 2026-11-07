@@ -1,4 +1,8 @@
-title: "HiveGate"
+# The bare name "HiveGate" is also a trademarked beehive entrance, which owns the
+# search results for it. jekyll-seo-tag appends site.title to every <title> and uses
+# it as og:site_name, so this says what HiveGate is. The organization keeps the plain
+# name through `social.name` below.
+title: "HiveGate AI agent runtime"
 tagline: "Production FastAPI gateway for AI agents, built on Agno. MIT-licensed, deploy in one click."
 description: >-
   HiveGate is an open-source FastAPI service for serving, orchestrating,
@@ -14,6 +18,13 @@ author:
   name: HiveGate
   url: https://github.com/hivegate-ai
 logo: /assets/og-image.png
+# `social.links` becomes `sameAs` in the JSON-LD: it tells search engines this HiveGate
+# is the one on GitHub and PyPI.
+social:
+  name: HiveGate
+  links:
+    - https://github.com/hivegate-ai/hivegate
+    - https://pypi.org/project/hivegate-ai/
 
 # Social card image: set as `image` in `defaults` below, because jekyll-seo-tag
 # reads it only from page front matter, never from a site-level key.
